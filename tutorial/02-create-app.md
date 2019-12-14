@@ -28,12 +28,12 @@ Bevor Sie fortfahren, fügen Sie einige zusätzliche Abhängigkeiten hinzu, die 
 Führen Sie die folgenden Befehle in der CLI aus, um die Abhängigkeiten zu installieren.
 
 ```Shell
-dotnet add package Microsoft.Extensions.Configuration --version 2.2.0
-dotnet add package Microsoft.Extensions.Configuration.FileExtensions --version 2.2.0
-dotnet add package Microsoft.Extensions.Configuration.Json --version 2.2.0
-dotnet add package Microsoft.Extensions.Configuration.Binder --version 2.2.0
-dotnet add package Microsoft.Identity.Client --version 4.3.1
-dotnet add package Microsoft.Graph --version 1.17.0
+dotnet add package Microsoft.Extensions.Configuration --version 3.1.0
+dotnet add package Microsoft.Extensions.Configuration.FileExtensions --version 3.1.0
+dotnet add package Microsoft.Extensions.Configuration.Json --version 3.1.0
+dotnet add package Microsoft.Extensions.Configuration.Binder --version 3.1.0
+dotnet add package Microsoft.Identity.Client --version 4.7.1
+dotnet add package Microsoft.Graph --version 1.21.0
 ```
 
 ## <a name="design-the-app"></a>Entwerfen der APP
