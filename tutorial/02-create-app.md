@@ -20,18 +20,14 @@ Erstellen Sie zunächst ein neues .net Core-Konsolenprojekt mithilfe der [.net-K
 
 Bevor Sie fortfahren, fügen Sie einige zusätzliche Abhängigkeiten hinzu, die Sie später verwenden werden.
 
-- [Microsoft. Extensions. Configuration](https://github.com/aspnet/Extensions) zum Lesen der Anwendungskonfiguration aus einer JSON-Datei.
+- [Microsoft. Extensions. Configuration. UserSecrets](https://github.com/aspnet/extensions) zum Lesen der Anwendungskonfiguration aus dem [geheimen .net-entwicklungsspeicher](https://docs.microsoft.com/aspnet/core/security/app-secrets).
 - [Microsoft Authentication Library (MSAL) für .net](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet) , um den Benutzer zu authentifizieren und Zugriffstoken zu erwerben.
 - [Microsoft Graph .NET-Client Bibliothek](https://github.com/microsoftgraph/msgraph-sdk-dotnet) , um Anrufe an Microsoft Graph zu tätigen.
-- [Authentifizierungsanbieter für Microsoft Graph .NET SDK](https://github.com/microsoftgraph/msgraph-sdk-dotnet-auth) , um zu ermöglichen, dass die Graph-Clientbibliothek Token beim Erstellen von API-Aufrufen automatisch anfordert.
 
 Führen Sie die folgenden Befehle in der CLI aus, um die Abhängigkeiten zu installieren.
 
 ```Shell
-dotnet add package Microsoft.Extensions.Configuration --version 3.1.0
-dotnet add package Microsoft.Extensions.Configuration.FileExtensions --version 3.1.0
-dotnet add package Microsoft.Extensions.Configuration.Json --version 3.1.0
-dotnet add package Microsoft.Extensions.Configuration.Binder --version 3.1.0
+dotnet add package Microsoft.Extensions.Configuration.UserSecrets --version 3.1.0
 dotnet add package Microsoft.Identity.Client --version 4.7.1
 dotnet add package Microsoft.Graph --version 1.21.0
 ```
