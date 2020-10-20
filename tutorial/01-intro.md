@@ -15,7 +15,7 @@ Sie sollten auch über ein persönliches Microsoft-Konto mit einem Postfach auf 
 - Sie können sich [für das Office 365 Entwicklerprogramm registrieren](https://developer.microsoft.com/office/dev-program) , um ein kostenloses Office 365-Abonnement zu erhalten.
 
 > [!NOTE]
-> Dieses Lernprogramm wurde mit .net Core SDK Version 3.1.200 geschrieben. Die Schritte in diesem Leitfaden funktionieren möglicherweise mit anderen Versionen, jedoch nicht getestet.
+> Dieses Lernprogramm wurde mit .net Core SDK Version 3.1.402 geschrieben. Die Schritte in diesem Leitfaden funktionieren möglicherweise mit anderen Versionen, jedoch nicht getestet.
 
 ## <a name="feedback"></a>Feedback
 

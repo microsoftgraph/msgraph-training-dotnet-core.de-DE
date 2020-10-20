@@ -12,8 +12,14 @@ In dieser Übung erweitern Sie die Anwendung aus der vorherigen Übung, um die A
 
     ```Shell
     dotnet user-secrets set appId "YOUR_APP_ID_HERE"
-    dotnet user-secrets set scopes "User.Read;Calendars.Read"
+    dotnet user-secrets set scopes "User.Read;MailboxSettings.Read;Calendars.ReadWrite"
     ```
+
+    Sehen wir uns die Berechtigungs Bereiche an, die Sie soeben festgelegt haben.
+
+    - **Benutzer. Read** ermöglicht der APP, das Profil des angemeldeten Benutzers zu lesen, um Informationen wie den Anzeigenamen und die e-Mail-Adresse abzurufen.
+    - Mit **Mailbox Settings. Read** kann die APP die bevorzugte Zeitzone, das Datumsformat und das Zeitformat des Benutzers lesen.
+    - Mit **Calendars. ReadWrite** kann die APP die vorhandenen Ereignisse im Kalender des Benutzers lesen und neue Ereignisse hinzufügen.
 
 ## <a name="implement-sign-in"></a>Implementieren der Anmeldung
 
@@ -31,12 +37,12 @@ In diesem Abschnitt erstellen Sie einen Authentifizierungsanbieter, der mit dem 
 - Es verwendet die MSAL `IPublicClientApplication` -Implementierung, um Token anzufordern und zu verwalten.
 - Die `GetAccessToken` Funktion:
   - Meldet den Benutzer an, wenn er nicht bereits mit dem Gerätecode Fluss angemeldet ist.
-  - Stellt sicher, dass das zurückgegebene Token immer `AcquireTokenSilent` neu ist, indem es die-Funktion verwendet, die das zwischengespeicherte Token zurückgibt, wenn es nicht abgelaufen ist, und das Token aktualisiert, wenn es abgelaufen ist.
+  - Stellt sicher, dass das zurückgegebene Token immer neu ist, indem es die- `AcquireTokenSilent` Funktion verwendet, die das zwischengespeicherte Token zurückgibt, wenn es nicht abgelaufen ist, und das Token aktualisiert, wenn es abgelaufen ist.
 - Die `IAuthenticationProvider` Schnittstelle wird implementiert, sodass das Graph-SDK die Klasse zum Authentifizieren von Graph-aufrufen verwenden kann.
 
 ## <a name="sign-in-and-display-the-access-token"></a>Anmelden und Anzeigen des Zugriffstokens
 
-In diesem Abschnitt aktualisieren Sie die Anwendung so, dass die `GetAccessToken` Funktion aufgerufen wird, die sich am Benutzer anmeldet. Sie fügen auch Code hinzu, um das Token anzuzeigen.
+In diesem Abschnitt aktualisieren Sie die Anwendung so, dass die Funktion aufgerufen wird, die sich `GetAccessToken` am Benutzer anmeldet. Sie fügen auch Code hinzu, um das Token anzuzeigen.
 
 1. Fügen Sie die folgende Funktion zur `Program`-Klasse hinzu:
 

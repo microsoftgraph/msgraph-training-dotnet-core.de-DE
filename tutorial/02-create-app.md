@@ -14,33 +14,36 @@ Erstellen Sie zunächst ein neues .net Core-Konsolenprojekt mithilfe der [.net-K
     dotnet run
     ```
 
-    Wenn die APP funktioniert, sollte Sie ausgegeben `Hello World!`werden.
+    Wenn die APP funktioniert, sollte Sie ausgegeben werden `Hello World!` .
 
 ## <a name="install-dependencies"></a>Installieren von Abhängigkeiten
 
 Bevor Sie fortfahren, fügen Sie einige zusätzliche Abhängigkeiten hinzu, die Sie später verwenden werden.
 
-- [Microsoft. Extensions. Configuration. UserSecrets](https://github.com/aspnet/extensions) zum Lesen der Anwendungskonfiguration aus dem [geheimen .net-entwicklungsspeicher](https://docs.microsoft.com/aspnet/core/security/app-secrets).
+- [Microsoft.Extensions.Configuration. UserSecrets](https://github.com/aspnet/extensions) zum Lesen der Anwendungskonfiguration aus dem [geheimen .net-entwicklungsspeicher](https://docs.microsoft.com/aspnet/core/security/app-secrets).
 - [Microsoft Authentication Library (MSAL) für .net](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet) , um den Benutzer zu authentifizieren und Zugriffstoken zu erwerben.
 - [Microsoft Graph .NET-Client Bibliothek](https://github.com/microsoftgraph/msgraph-sdk-dotnet) , um Anrufe an Microsoft Graph zu tätigen.
+- [TimeZoneConverter](https://github.com/mj1856/TimeZoneConverter) für die Übersetzung von Windows-Zeitzonenbezeichnern in IANA-IDs.
 
 Führen Sie die folgenden Befehle in der CLI aus, um die Abhängigkeiten zu installieren.
 
 ```Shell
-dotnet add package Microsoft.Extensions.Configuration.UserSecrets --version 3.1.2
-dotnet add package Microsoft.Identity.Client --version 4.10.0
-dotnet add package Microsoft.Graph --version 3.0.1
+dotnet add package Microsoft.Extensions.Configuration.UserSecrets --version 3.1.8
+dotnet add package Microsoft.Identity.Client --version 4.19.0
+dotnet add package Microsoft.Graph --version 3.15.0
+dotnet add package TimeZoneConverter
 ```
 
 ## <a name="design-the-app"></a>Entwerfen der App
 
 In diesem Abschnitt wird ein einfaches konsolenbasiertes Menü erstellt.
 
-Öffnen Sie **Program.cs** in einem Text-Editor (beispielsweise [Visual Studio Code](https://code.visualstudio.com/)), und ersetzen Sie den gesamten Inhalt durch den folgenden Code.
+Öffnen Sie **./Program.cs** in einem Text-Editor (beispielsweise [Visual Studio Code](https://code.visualstudio.com/)), und ersetzen Sie den gesamten Inhalt durch den folgenden Code.
 
 ```csharp
 using Microsoft.Extensions.Configuration;
 using System;
+using System.Collections.Generic;
 
 namespace GraphTutorial
 {
@@ -56,7 +59,8 @@ namespace GraphTutorial
                 Console.WriteLine("Please choose one of the following options:");
                 Console.WriteLine("0. Exit");
                 Console.WriteLine("1. Display access token");
-                Console.WriteLine("2. List calendar events");
+                Console.WriteLine("2. View this week's calendar");
+                Console.WriteLine("3. Add an event");
 
                 try
                 {
@@ -79,6 +83,9 @@ namespace GraphTutorial
                         break;
                     case 2:
                         // List the calendar
+                        break;
+                    case 3:
+                        // Create a new event
                         break;
                     default:
                         Console.WriteLine("Invalid choice! Please try again.");

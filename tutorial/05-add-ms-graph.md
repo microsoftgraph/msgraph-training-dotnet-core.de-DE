@@ -28,7 +28,13 @@ In dieser Übung werden Sie das Microsoft Graph in die Anwendung integrieren. F�
                 try
                 {
                     // GET /me
-                    return await graphClient.Me.Request().GetAsync();
+                    return await graphClient.Me
+                        .Request()
+                        .Select(u => new{
+                            u.DisplayName,
+                            u.MailboxSettings
+                        })
+                        .GetAsync();
                 }
                 catch (ServiceException ex)
                 {
@@ -40,27 +46,30 @@ In dieser Übung werden Sie das Microsoft Graph in die Anwendung integrieren. F�
     }
     ```
 
-1. Fügen Sie den folgenden Code `Main` in in **Program.cs** unmittelbar nach `GetAccessToken` dem Aufruf zum Abrufen des Benutzers und ausgeben des Anzeigenamens des Benutzers hinzu.
+1. Fügen Sie den folgenden Code in `Main` in **./Program.cs** unmittelbar nach dem `GetAccessToken` Aufruf zum Abrufen des Benutzers und ausgeben des Anzeigenamens des Benutzers hinzu.
 
     :::code language="csharp" source="../demo/GraphTutorial/Program.cs" id="GetUserSnippet":::
 
 Wenn Sie die APP jetzt ausführen, werden Sie nach der Anmeldung in der APP nach Namen begrüßt.
 
-## <a name="get-calendar-events-from-outlook"></a>Abrufen von Kalenderereignissen von Outlook
+## <a name="get-a-calendar-view"></a>Abrufen einer Kalenderansicht
 
-1. Fügen Sie der `GraphHelper` Klasse die folgende Funktion hinzu, um Ereignisse aus dem Kalender des Benutzers abzurufen.
+1. Fügen Sie der Klasse die folgende Funktion hinzu `GraphHelper` , um Ereignisse aus dem Kalender des Benutzers abzurufen.
 
     :::code language="csharp" source="../demo/GraphTutorial/Graph/GraphHelper.cs" id="GetEventsSnippet":::
 
 Überlegen Sie sich, was dieser Code macht.
 
-- Die URL, die aufgerufen wird, lautet `/me/events`.
+- Die URL, die aufgerufen wird, lautet `/me/calendarview`.
+- Die `startDateTime` `endDateTime` Parameter und definieren den Anfang und das Ende der Kalenderansicht.
+- Der `Prefer: outlook.timezone` Header bewirkt `start` , dass die und der `end` Ereignisse in der Zeitzone des Benutzers zurückgegeben werden.
+- Die `Top` Funktion fordert die meisten 50-Ereignisse an.
 - Die `Select` Funktion schränkt die für jedes Ereignis zurückgegebenen Felder auf diejenigen ein, die von der APP tatsächlich verwendet werden.
-- Die `OrderBy`-Funktion sortiert die Ergebnisse nach Datum und Uhrzeit ihrer Erstellung, wobei das aktuellste Element zuerst angezeigt wird.
+- Die `OrderBy` -Funktion sortiert die Ergebnisse nach Startdatum und-Uhrzeit.
 
 ## <a name="display-the-results"></a>Anzeigen der Ergebnisse
 
-1. Fügen Sie die folgende Funktion zur `Program` -Klasse hinzu, um die [dateTimeTimeZone](/graph/api/resources/datetimetimezone?view=graph-rest-1.0) -Eigenschaften aus Microsoft Graph in ein benutzerfreundliches Format zu formatieren.
+1. Fügen Sie die folgende Funktion zur- `Program` Klasse hinzu, um die [dateTimeTimeZone](/graph/api/resources/datetimetimezone?view=graph-rest-1.0) -Eigenschaften aus Microsoft Graph in ein benutzerfreundliches Format zu formatieren.
 
     :::code language="csharp" source="../demo/GraphTutorial/Program.cs" id="FormatDateSnippet":::
 
@@ -68,41 +77,46 @@ Wenn Sie die APP jetzt ausführen, werden Sie nach der Anmeldung in der APP nach
 
     :::code language="csharp" source="../demo/GraphTutorial/Program.cs" id="ListEventsSnippet":::
 
-1. Fügen Sie das folgende direkt nach `// List the calendar` dem Kommentar in `Main` der-Funktion hinzu.
+1. Fügen Sie das folgende direkt nach dem `// List the calendar` Kommentar in der `Main` -Funktion hinzu.
 
     ```csharp
-    ListCalendarEvents();
+    ListCalendarEvents(
+        user.MailboxSettings.TimeZone,
+        $"{user.MailboxSettings.DateFormat} {user.MailboxSettings.TimeFormat}"
+    );
     ```
 
-1. Speichern Sie alle Änderungen, und führen Sie die APP aus. Wählen Sie die Option **Listen Kalenderereignisse** aus, um eine Liste der Ereignisse des Benutzers anzuzeigen.
+1. Speichern Sie alle Änderungen, und führen Sie die APP aus. Wählen Sie die Option **Kalender dieser Woche anzeigen** aus, um eine Liste der Ereignisse des Benutzers anzuzeigen.
 
     ```Shell
-    Welcome Adele Vance
+    Welcome Lynne Robbins!
 
     Please choose one of the following options:
     0. Exit
     1. Display access token
-    2. List calendar events
+    2. View this week's calendar
+    3. Add an event
     2
     Events:
-    Subject: Team meeting
-      Organizer: Adele Vance
-      Start: 5/22/19, 3:00 PM
-      End: 5/22/19, 4:00 PM
-    Subject: Team Lunch
-      Organizer: Adele Vance
-      Start: 5/24/19, 6:30 PM
-      End: 5/24/19, 8:00 PM
-    Subject: Flight to Redmond
-      Organizer: Adele Vance
-      Start: 5/26/19, 4:30 PM
-      End: 5/26/19, 7:00 PM
-    Subject: Let's meet to discuss strategy
-      Organizer: Patti Fernandez
-      Start: 5/27/19, 10:00 PM
-      End: 5/27/19, 10:30 PM
-    Subject: All-hands meeting
-      Organizer: Adele Vance
-      Start: 5/28/19, 3:30 PM
-      End: 5/28/19, 5:00 PM
+    Subject: Meeting
+      Organizer: Lynne Robbins
+      Start: 9/28/2020 10:00 AM
+      End: 9/28/2020 11:30 AM
+    Subject: Weekly meeting
+      Organizer: Lynne Robbins
+      Start: 9/28/2020 2:00 PM
+      End: 9/28/2020 3:00 PM
+    Subject: Carpool
+      Organizer: Lynne Robbins
+      Start: 9/28/2020 4:00 PM
+      End: 9/28/2020 5:30 PM
+    Subject: Tailspin Toys Proposal Review + Lunch
+      Organizer: Lidia Holloway
+      Start: 9/29/2020 12:00 PM
+      End: 9/29/2020 1:00 PM
+    Subject: Weekly meeting
+      Organizer: Lynne Robbins
+      Start: 9/29/2020 2:00 PM
+      End: 9/29/2020 3:00 PM
+    Subject: Project Tailspin
     ```

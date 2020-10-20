@@ -4,7 +4,7 @@
 
 Um das abgeschlossene Projekt in diesem Ordner auszuführen, benötigen Sie Folgendes:
 
-- Das [.net Core SDK](https://dotnet.microsoft.com/download) , das auf Ihrem Entwicklungscomputer installiert ist. (**Hinweis:** dieses Lernprogramm wurde mit .net Core SDK Version 2.2.401 geschrieben. Die Schritte in diesem Leitfaden funktionieren möglicherweise mit anderen Versionen, aber das wurde nicht getestet.)
+- Das [.net Core SDK](https://dotnet.microsoft.com/download) , das auf Ihrem Entwicklungscomputer installiert ist. (**Hinweis:** dieses Lernprogramm wurde mit .net Core SDK Version 3.1.402 geschrieben. Die Schritte in diesem Leitfaden funktionieren möglicherweise mit anderen Versionen, aber das wurde nicht getestet.)
 - Ein Microsoft-Arbeits-oder Schulkonto.
 
 Wenn Sie kein Microsoft-Konto haben, können Sie [sich für das Office 365 Entwicklerprogramm registrieren](https://developer.microsoft.com/office/dev-program) , um ein kostenloses Office 365-Abonnement zu erhalten.
@@ -29,7 +29,7 @@ Wenn Sie kein Microsoft-Konto haben, können Sie [sich für das Office 365 Entwi
 
     ![Screenshot der Anwendungs-ID der neuen App-Registrierung](/tutorial/images/aad-application-id.png)
 
-1. Klicken Sie auf den Link **Umleitungs-URI hinzufügen** . Suchen Sie auf der Seite " **Umleitungs-URIs** " den Abschnitt **vorgeschlagene Umleitungs-URIs für öffentliche Clients (Mobile, Desktop)** . Wählen Sie `https://login.microsoftonline.com/common/oauth2/nativeclient` den URI aus.
+1. Klicken Sie auf den Link **Umleitungs-URI hinzufügen** . Suchen Sie auf der Seite " **Umleitungs-URIs** " den Abschnitt **vorgeschlagene Umleitungs-URIs für öffentliche Clients (Mobile, Desktop)** . Wählen Sie den `https://login.microsoftonline.com/common/oauth2/nativeclient` URI aus.
 
     ![Screenshot der Seite "Umleitungs-URIs"](/tutorial/images/aad-redirect-uris.png)
 
