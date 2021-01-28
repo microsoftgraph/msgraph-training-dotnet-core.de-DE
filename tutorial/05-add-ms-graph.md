@@ -1,17 +1,18 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-In dieser Übung werden Sie das Microsoft Graph in die Anwendung integrieren. Für diese Anwendung verwenden Sie die [Microsoft Graph .NET-Client Bibliothek](https://github.com/microsoftgraph/msgraph-sdk-dotnet) , um Anrufe an Microsoft Graph zu tätigen.
+In dieser Übung integrieren Sie Microsoft Graph in die Anwendung. Für diese Anwendung verwenden Sie die [Microsoft Graph .NET-Clientbibliothek,](https://github.com/microsoftgraph/msgraph-sdk-dotnet) um Aufrufe an Microsoft Graph zu senden.
 
 ## <a name="get-user-details"></a>Benutzerdetails abrufen
 
-1. Erstellen Sie ein neues Verzeichnis im **GraphTutorial** -Verzeichnis mit dem Namen **Graph**.
-1. Erstellen Sie eine neue Datei im **Graph** -Verzeichnis mit dem Namen **GraphHelper.cs** , und fügen Sie der Datei den folgenden Code hinzu.
+1. Erstellen Sie ein neues Verzeichnis im **GraphTutorial-Verzeichnis** mit dem Namen **Graph**.
+1. Erstellen Sie eine neue Datei im **Graph-Verzeichnis** **namens GraphHelper.cs,** und fügen Sie der Datei den folgenden Code hinzu.
 
     ```csharp
     using Microsoft.Graph;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using TimeZoneConverter;
 
     namespace GraphTutorial
     {
@@ -46,38 +47,38 @@ In dieser Übung werden Sie das Microsoft Graph in die Anwendung integrieren. F�
     }
     ```
 
-1. Fügen Sie den folgenden Code in `Main` in **./Program.cs** unmittelbar nach dem `GetAccessToken` Aufruf zum Abrufen des Benutzers und ausgeben des Anzeigenamens des Benutzers hinzu.
+1. Fügen Sie den folgenden Code `Main` in **"./Program.cs** direkt nach dem Aufruf hinzu, um den Benutzer zu erhalten und den `GetAccessToken` Anzeigenamen des Benutzers ausausgabe.
 
     :::code language="csharp" source="../demo/GraphTutorial/Program.cs" id="GetUserSnippet":::
 
-Wenn Sie die APP jetzt ausführen, werden Sie nach der Anmeldung in der APP nach Namen begrüßt.
+Wenn Sie die App jetzt ausführen, werden Sie nach der Anmeldung in der App mit ihrem Namen willkommen gegrüst.
 
-## <a name="get-a-calendar-view"></a>Abrufen einer Kalenderansicht
+## <a name="get-a-calendar-view"></a>Kalenderansicht erhalten
 
-1. Fügen Sie der Klasse die folgende Funktion hinzu `GraphHelper` , um Ereignisse aus dem Kalender des Benutzers abzurufen.
+1. Fügen Sie der Klasse die folgende Funktion `GraphHelper` hinzu, um Ereignisse aus dem Kalender des Benutzers zu erhalten.
 
     :::code language="csharp" source="../demo/GraphTutorial/Graph/GraphHelper.cs" id="GetEventsSnippet":::
 
 Überlegen Sie sich, was dieser Code macht.
 
 - Die URL, die aufgerufen wird, lautet `/me/calendarview`.
-- Die `startDateTime` `endDateTime` Parameter und definieren den Anfang und das Ende der Kalenderansicht.
-- Der `Prefer: outlook.timezone` Header bewirkt `start` , dass die und der `end` Ereignisse in der Zeitzone des Benutzers zurückgegeben werden.
-- Die `Top` Funktion fordert die meisten 50-Ereignisse an.
-- Die `Select` Funktion schränkt die für jedes Ereignis zurückgegebenen Felder auf diejenigen ein, die von der APP tatsächlich verwendet werden.
-- Die `OrderBy` -Funktion sortiert die Ergebnisse nach Startdatum und-Uhrzeit.
+- Die `startDateTime` Parameter definieren den Anfang und das Ende der `endDateTime` Kalenderansicht.
+- Der Header bewirkt, dass das Ereignis und die Ereignisse in der Zeitzone des `Prefer: outlook.timezone` `start` Benutzers zurückgegeben `end` werden.
+- Die `Top` Funktion fordert mindestens 50 Ereignisse an.
+- Die Funktion beschränkt die für jedes Ereignis zurückgegebenen Felder auf die Felder, die `Select` tatsächlich von der App verwendet werden.
+- Die `OrderBy` Funktion sortiert die Ergebnisse nach Startdatum und -uhrzeit.
 
 ## <a name="display-the-results"></a>Anzeigen der Ergebnisse
 
-1. Fügen Sie die folgende Funktion zur- `Program` Klasse hinzu, um die [dateTimeTimeZone](/graph/api/resources/datetimetimezone?view=graph-rest-1.0) -Eigenschaften aus Microsoft Graph in ein benutzerfreundliches Format zu formatieren.
+1. Fügen Sie der Klasse die folgende Funktion hinzu, um die `Program` [dateTimeTimeZone-Eigenschaften](/graph/api/resources/datetimetimezone?view=graph-rest-1.0) aus Microsoft Graph in ein benutzerfreundliches Format zu formatieren.
 
     :::code language="csharp" source="../demo/GraphTutorial/Program.cs" id="FormatDateSnippet":::
 
-1. Fügen Sie die folgende Funktion zur `Program` -Klasse hinzu, um die Ereignisse des Benutzers abzurufen und Sie in der Konsole auszugeben.
+1. Fügen Sie der Klasse die folgende Funktion hinzu, um die Ereignisse des Benutzers zu erhalten und `Program` sie an die Konsole ausausgabe.
 
     :::code language="csharp" source="../demo/GraphTutorial/Program.cs" id="ListEventsSnippet":::
 
-1. Fügen Sie das folgende direkt nach dem `// List the calendar` Kommentar in der `Main` -Funktion hinzu.
+1. Fügen Sie folgendes direkt nach dem `// List the calendar` Kommentar in der Funktion `Main` hinzu.
 
     ```csharp
     ListCalendarEvents(
@@ -86,7 +87,7 @@ Wenn Sie die APP jetzt ausführen, werden Sie nach der Anmeldung in der APP nach
     );
     ```
 
-1. Speichern Sie alle Änderungen, und führen Sie die APP aus. Wählen Sie die Option **Kalender dieser Woche anzeigen** aus, um eine Liste der Ereignisse des Benutzers anzuzeigen.
+1. Speichern Sie alle Änderungen, und führen Sie die App aus. Wählen Sie **die Kalenderoption "Diese Woche anzeigen"** aus, um eine Liste der Ereignisse des Benutzers anzuzeigen.
 
     ```Shell
     Welcome Lynne Robbins!

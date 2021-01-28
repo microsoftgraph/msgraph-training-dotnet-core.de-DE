@@ -1,6 +1,6 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-Erstellen Sie zunächst ein neues .net Core-Konsolenprojekt mithilfe der [.net-Kern-CLI](/dotnet/core/tools/).
+Erstellen Sie zunächst mithilfe der .NET Core CLI ein [neues .NET Core-Konsolenprojekt.](/dotnet/core/tools/)
 
 1. Öffnen Sie die Befehlszeilenschnittstelle (CLI) in einem Verzeichnis, in dem Sie das Projekt erstellen möchten. Führen Sie den folgenden Befehl aus.
 
@@ -8,37 +8,37 @@ Erstellen Sie zunächst ein neues .net Core-Konsolenprojekt mithilfe der [.net-K
     dotnet new console -o GraphTutorial
     ```
 
-1. Nachdem das Projekt erstellt wurde, stellen Sie sicher, dass es funktioniert, indem Sie das aktuelle Verzeichnis in das **GraphTutorial** -Verzeichnis ändern und den folgenden Befehl in ihrer CLI ausführen.
+1. Nachdem das Projekt erstellt wurde, überprüfen Sie, ob es funktioniert, indem Sie das aktuelle Verzeichnis in das Verzeichnis **"GraphTutorial"** ändern und den folgenden Befehl in Ihrer CLI ausführen.
 
     ```Shell
     dotnet run
     ```
 
-    Wenn die APP funktioniert, sollte Sie ausgegeben werden `Hello World!` .
+    Wenn dies funktioniert, sollte die App ausgabe `Hello World!` .
 
 ## <a name="install-dependencies"></a>Installieren von Abhängigkeiten
 
-Bevor Sie fortfahren, fügen Sie einige zusätzliche Abhängigkeiten hinzu, die Sie später verwenden werden.
+Fügen Sie vor dem Wechsel einige zusätzliche Abhängigkeiten hinzu, die Sie später verwenden werden.
 
-- [Microsoft.Extensions.Configuration. UserSecrets](https://github.com/aspnet/extensions) zum Lesen der Anwendungskonfiguration aus dem [geheimen .net-entwicklungsspeicher](https://docs.microsoft.com/aspnet/core/security/app-secrets).
-- [Microsoft Authentication Library (MSAL) für .net](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet) , um den Benutzer zu authentifizieren und Zugriffstoken zu erwerben.
-- [Microsoft Graph .NET-Client Bibliothek](https://github.com/microsoftgraph/msgraph-sdk-dotnet) , um Anrufe an Microsoft Graph zu tätigen.
-- [TimeZoneConverter](https://github.com/mj1856/TimeZoneConverter) für die Übersetzung von Windows-Zeitzonenbezeichnern in IANA-IDs.
+- [Microsoft.Extensions.Configuration. UserSecrets](https://github.com/aspnet/extensions) zum Lesen der Anwendungskonfiguration aus [dem geheimen .NET-Entwicklungsspeicher.](https://docs.microsoft.com/aspnet/core/security/app-secrets)
+- [Microsoft Authentication Library (MSAL) für .NET,](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet) um den Benutzer zu authentifizieren und Zugriffstoken zu erwerben.
+- [Microsoft Graph .NET-Clientbibliothek,](https://github.com/microsoftgraph/msgraph-sdk-dotnet) um Aufrufe an Microsoft Graph zu senden.
+- [TimeZoneConverter zum](https://github.com/mj1856/TimeZoneConverter) Übersetzen von Windows-Zeitzonen-IDs in IANA-IDs.
 
-Führen Sie die folgenden Befehle in der CLI aus, um die Abhängigkeiten zu installieren.
+Führen Sie die folgenden Befehle in Ihrer CLI aus, um die Abhängigkeiten zu installieren.
 
 ```Shell
-dotnet add package Microsoft.Extensions.Configuration.UserSecrets --version 3.1.8
-dotnet add package Microsoft.Identity.Client --version 4.19.0
-dotnet add package Microsoft.Graph --version 3.15.0
+dotnet add package Microsoft.Extensions.Configuration.UserSecrets --version 5.0.0
+dotnet add package Microsoft.Identity.Client --version 4.25.0
+dotnet add package Microsoft.Graph --version 3.22.0
 dotnet add package TimeZoneConverter
 ```
 
 ## <a name="design-the-app"></a>Entwerfen der App
 
-In diesem Abschnitt wird ein einfaches konsolenbasiertes Menü erstellt.
+In diesem Abschnitt erstellen Sie ein einfaches konsolenbasiertes Menü.
 
-Öffnen Sie **./Program.cs** in einem Text-Editor (beispielsweise [Visual Studio Code](https://code.visualstudio.com/)), und ersetzen Sie den gesamten Inhalt durch den folgenden Code.
+Öffnen **Sie ./Program.cs** in einem Texteditor (z. [B. Visual Studio Code),](https://code.visualstudio.com/)und ersetzen Sie den gesamten Inhalt durch den folgenden Code.
 
 ```csharp
 using Microsoft.Extensions.Configuration;
@@ -97,4 +97,4 @@ namespace GraphTutorial
 }
 ```
 
-Dadurch wird ein einfaches Menü implementiert, und die Auswahl des Benutzers wird von der Befehlszeile aus gelesen.
+Dadurch wird ein einfaches Menü implementiert und die Auswahl des Benutzers über die Befehlszeile gelesen.
